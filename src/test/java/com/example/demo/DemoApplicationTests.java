@@ -2,6 +2,8 @@ package com.example.demo;
 
 import com.example.demo.service.BlogProperties;
 import com.example.demo.web.HelloController;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,6 +23,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class DemoApplicationTests {
+
+	private static final Log log = LogFactory.getLog(DemoApplicationTests.class);
 
 	@Test
 	public void contextLoads() {
@@ -47,6 +51,13 @@ public class DemoApplicationTests {
 	public void testBlog() throws Exception {
 		Assert.assertEquals("coder", blogProperties.getName());
 		Assert.assertEquals("Spring Boot 样例", blogProperties.getTitle());
+		Assert.assertEquals("coder 正在写 《Spring Boot 样例》", blogProperties.getDesc());
+
+		log.info("随机数测试输出：");
+		log.info("随机字符串：" + blogProperties.getValue());
+		log.info("随机int：" + blogProperties.getNumber());
+		log.info("随机10以下 : " + blogProperties.getTest1());
+		log.info("随机10-20 : " + blogProperties.getTest2());
 	}
 
 }
