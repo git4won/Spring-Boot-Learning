@@ -1,9 +1,12 @@
 package com.example.demo;
 
+import com.example.demo.service.BlogProperties;
 import com.example.demo.web.HelloController;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -37,6 +40,13 @@ public class DemoApplicationTests {
 				.andExpect(content().string(equalTo("Hello World")));
 	}
 
+	@Autowired
+	private BlogProperties blogProperties;
 
+	@Test
+	public void testBlog() throws Exception {
+		Assert.assertEquals("coder", blogProperties.getName());
+		Assert.assertEquals("Spring Boot 样例", blogProperties.getTitle());
+	}
 
 }
